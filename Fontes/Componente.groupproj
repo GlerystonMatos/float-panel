@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{32C50987-7A7B-4812-B633-448AB6E96CE2}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FloatPanel.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FloatPanelClient.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FloatPanel">
+        <MSBuild Projects="FloatPanel.dproj"/>
+    </Target>
+    <Target Name="FloatPanel:Clean">
+        <MSBuild Projects="FloatPanel.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FloatPanel:Make">
+        <MSBuild Projects="FloatPanel.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FloatPanelClient">
+        <MSBuild Projects="FloatPanelClient.dproj"/>
+    </Target>
+    <Target Name="FloatPanelClient:Clean">
+        <MSBuild Projects="FloatPanelClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FloatPanelClient:Make">
+        <MSBuild Projects="FloatPanelClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FloatPanel;FloatPanelClient"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FloatPanel:Clean;FloatPanelClient:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FloatPanel:Make;FloatPanelClient:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
